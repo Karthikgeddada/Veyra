@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+jinja2
+python-dotenv
+langgraph
+langchain
+langchain-openai
+langchain-core
+pydantic
+aiofiles
+streamlit
+openai
+pytest

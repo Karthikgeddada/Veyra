@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevTeam AI - The Autonomous AI Software Engineer</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- highlight.js for code preview -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="logo"></div>
+                <h2>DevTeam AI</h2>
+            </div>
+            <nav>
+                <a href="#" class="active"><i class="icon">💻</i> Studio</a>
+                <a href="#"><i class="icon">📂</i> Projects</a>
+                <a href="#"><i class="icon">⚙️</i> Settings</a>
+            </nav>
+            <div class="user-profile">
+                <div class="avatar"></div>
+                <span>Engineer Mode</span>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="topbar">
+                <h1>Autonomous Software Studio</h1>
+                <p>Describe your project and our AI team will build it.</p>
+            </header>
+
+            <section class="prompt-section">
+                <div class="input-group">
+                    <textarea id="promptInput" placeholder="E.g., Build an ecommerce website with admin panel in Python FastAPI and React..."></textarea>
+                    <button id="generateBtn" class="btn-primary">Generate Project <span class="sparkle">✨</span></button>
+                </div>
+            </section>
+
+            <section class="dashboard-grid">
+                <!-- Status & Progress -->
+                <div class="card status-card">
+                    <h3>Workflow Status</h3>
+                    
+                    <div class="progress-wrapper">
+                        <div class="progress-info">
+                            <span id="progressText">0% Complete</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" id="progressBarFill"></div>
+                        </div>
+                    </div>
+
+                    <div class="status-tracker">
+                        <div class="step" id="step-requirements">Requirement Analysis</div>
+                        <div class="step" id="step-architecture">Architecture Design</div>
+                        <div class="step" id="step-coding">Code Generation</div>
+                        <div class="step" id="step-review">Review & Debug</div>
+                        <div class="step" id="step-testing">Testing</div>
+                        <div class="step" id="step-docs">Documentation</div>
+                        <div class="step" id="step-packaging">Packaging</div>
+                    </div>
+                </div>
+
+                <!-- Live Logs -->
+                <div class="card logs-card">
+                    <h3>Live Engine Logs</h3>
+                    <div id="logsTerminal" class="terminal">
+                        Waiting for prompt...
+                    </div>
+                </div>
+            </section>
+
+            <section class="results-section hidden" id="resultsSection">
+                <div class="card files-card">
+                    <div class="files-header">
+                        <h3>Generated Files</h3>
+                        <a id="downloadBtn" class="btn-secondary" href="#" style="display: none;">Download ZIP ↓</a>
+                    </div>
+                    <div class="explorer-preview">
+                        <ul id="fileList" class="file-list"></ul>
+                        <div class="code-preview">
+                            <pre><code id="codeViewer" class="language-python">Select a file to preview</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="/static/script.js"></script>
+</body>
+</html>
