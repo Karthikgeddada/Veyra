@@ -1,0 +1,339 @@
+:root {
+    --bg-main: #0B0E14;
+    --bg-secondary: #131722;
+    --bg-card: rgba(23, 28, 40, 0.6);
+    --border-color: rgba(255, 255, 255, 0.08);
+    --accent: #5E6AD2;
+    --accent-hover: #7380f3;
+    --text-primary: #E2E8F0;
+    --text-secondary: #94A3B8;
+    --success: #10B981;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.app-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 260px;
+    background-color: var(--bg-secondary);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 48px;
+}
+
+.logo {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, var(--accent), #B372CE);
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(94, 106, 210, 0.4);
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.sidebar nav a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    padding: 12px 16px;
+    border-radius: 8px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sidebar nav a:hover, .sidebar nav a.active {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-color);
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    background-color: #334155;
+    border-radius: 50%;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 48px 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.topbar h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    background: linear-gradient(to right, #ffffff, #a5b4fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.topbar p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+/* Prompt Section */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    padding: 24px;
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+}
+
+textarea {
+    width: 100%;
+    min-height: 120px;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 1.1rem;
+    resize: vertical;
+    outline: none;
+}
+
+.btn-primary {
+    align-self: flex-end;
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(94, 106, 210, 0.4);
+}
+
+.sparkle {
+    font-size: 1.2rem;
+}
+
+/* Dashboard Grid */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 24px;
+    backdrop-filter: blur(10px);
+}
+
+.card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+}
+
+/* Status Tracker */
+.status-tracker {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.step {
+    padding: 12px 16px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s;
+}
+
+.step::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #334155;
+}
+
+.step.active {
+    color: var(--accent);
+    background: rgba(94, 106, 210, 0.1);
+    border: 1px solid rgba(94, 106, 210, 0.2);
+}
+
+.step.active::before {
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+}
+
+.step.done {
+    color: var(--success);
+}
+
+.step.done::before {
+    background: var(--success);
+}
+
+/* Terminal */
+.terminal {
+    background: #000;
+    border-radius: 8px;
+    padding: 16px;
+    font-family: monospace;
+    color: #10B981;
+    height: 300px;
+    overflow-y: auto;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Results */
+.files-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.explorer-preview {
+    display: flex;
+    gap: 20px;
+    height: 400px;
+}
+
+.file-list {
+    flex: 1;
+    list-style: none;
+    overflow-y: auto;
+    border-right: 1px solid var(--border-color);
+    padding-right: 10px;
+}
+
+.file-list li {
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 6px;
+    color: var(--text-secondary);
+    transition: all 0.2s;
+}
+
+.file-list li:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+.code-preview {
+    flex: 3;
+    overflow: auto;
+    background: #000;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.code-preview pre {
+    margin: 0;
+}
+
+/* Progress Bar */
+.progress-wrapper {
+    margin-bottom: 24px;
+}
+.progress-info {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+.progress-bar-container {
+    width: 100%;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+.progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--accent), #B372CE);
+    border-radius: 4px;
+    transition: width 0.5s ease-in-out;
+    box-shadow: 0 0 10px rgba(94, 106, 210, 0.5);
+}
