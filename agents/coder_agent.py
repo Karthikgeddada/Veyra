@@ -30,9 +30,30 @@ You MUST output ONLY valid JSON in the following format. Do not include markdown
 User Prompt: {prompt}
 Architecture: {architecture}
 """
-    response = await generate_response(system_prompt, task_type="coding")
-    data = parse_json_response(response)
-    files = data.get("files", [])
-    if not files:
-        raise ValueError("Coder agent produced no files. The model response could not be parsed.")
-    return files
+    try:
+        response = await generate_response(system_prompt, task_type="coding")
+        if not response or not response.strip():
+            raise ValueError(
+                "Coder agent received empty response from LLM. "
+                "Check your API key and model configuration."
+            )
+        data = parse_json_response(response)
+        if not isinstance(data, dict):
+            raise ValueError(
+                f"Coder agent expected a dict, got {type(data).__name__}. "
+                f"Response preview: {response[:500]}"
+            )
+        files = data.get("files", [])
+        if not files:
+            raise ValueError(
+                f"Coder agent parsed JSON but found no files. "
+                f"Parsed data keys: {list(data.keys())}. "
+                f"Response preview: {response[:500]}"
+            )
+        return files
+    except Exception as exc:
+        # Re-raise with more context for debugging
+        raise ValueError(
+            f"Coder agent failed: {exc}. "
+            f"Check logs for the full LLM response."
+        ) from exc

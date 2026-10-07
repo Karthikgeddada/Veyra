@@ -199,11 +199,30 @@ class LLMProvider:
                 usage_tokens = "?"
                 if response.usage:
                     usage_tokens = getattr(response.usage, "total_tokens", "?")
+                
+                # Extract content from the response
+                if not response.choices or len(response.choices) == 0:
+                    logger.error("LLM response contained no choices")
+                    return ""
+                
+                message = response.choices[0].message
+                content = getattr(message, "content", None) or ""
+                
+                # Log response metadata
                 logger.info(
-                    "LLM generate ok | provider=%s model=%s tokens=%s duration=%.2fs",
-                    self.provider_name, kwargs["model"], usage_tokens, duration,
+                    "LLM generate ok | provider=%s model=%s tokens=%s duration=%.2fs content_len=%d",
+                    self.provider_name, kwargs["model"], usage_tokens, duration, len(content),
                 )
-                return response.choices[0].message.content or ""
+                
+                # Warn if content is empty
+                if not content:
+                    logger.warning(
+                        "LLM returned empty content | provider=%s model=%s finish_reason=%s",
+                        self.provider_name, kwargs["model"],
+                        getattr(response.choices[0], "finish_reason", "unknown"),
+                    )
+                
+                return content
             except AuthenticationError as exc:
                 safe = _redact(str(exc), cfg.api_key)
                 logger.error("LLM auth error: %s", safe)
